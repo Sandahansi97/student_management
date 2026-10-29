@@ -1,0 +1,9 @@
+<h1>Student Management and Marks System</h1>
+<div class="grid">
+  @for (card of cards; track card.link) {
+    <a class="tile" [routerLink]="card.link">
+      <span class="icon">{{ card.icon }}</span>
+      <span>{{ card.title }}</span>
+    </a>
+  }
+</div>

@@ -1,0 +1,24 @@
+<a class="back" routerLink="/">← Home</a>
+<div class="card">
+  <h2>Add Student Scores</h2>
+  <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+    <label for="sid">Student ID</label>
+    <input id="sid" type="number" name="studentId" [(ngModel)]="studentId" required min="1" #s="ngModel" />
+    @if (s.invalid && (s.touched || f.submitted)) { <div class="field-error">Enter a valid student ID</div> }
+
+    <label for="m">Mathematics score (0-100)</label>
+    <input id="m" type="number" name="mathsScore" [(ngModel)]="mathsScore" required min="0" max="100" step="0.01" #m="ngModel" />
+    @if (m.invalid && (m.touched || f.submitted)) { <div class="field-error">Enter a score between 0 and 100</div> }
+
+    <label for="e">English score (0-100)</label>
+    <input id="e" type="number" name="englishScore" [(ngModel)]="englishScore" required min="0" max="100" step="0.01" #e="ngModel" />
+    @if (e.invalid && (e.touched || f.submitted)) { <div class="field-error">Enter a score between 0 and 100</div> }
+
+    <label for="sc">Science score (0-100)</label>
+    <input id="sc" type="number" name="scienceScore" [(ngModel)]="scienceScore" required min="0" max="100" step="0.01" #sc="ngModel" />
+    @if (sc.invalid && (sc.touched || f.submitted)) { <div class="field-error">Enter a score between 0 and 100</div> }
+
+    <button type="submit">Save Scores</button>
+  </form>
+  <app-alert [text]="message()" [isError]="isError()" />
+</div>

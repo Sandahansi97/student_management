@@ -1,0 +1,30 @@
+<a class="back" routerLink="/">← Home</a>
+<div class="card">
+  <h2>Update Student Scores</h2>
+  <div class="row">
+    <div>
+      <label for="sid">Student ID</label>
+      <input id="sid" type="number" min="1" name="searchId" [(ngModel)]="searchId" (keyup.enter)="search()" />
+    </div>
+    <button type="button" (click)="search()">Search</button>
+  </div>
+
+  @if (marks(); as marks) {
+    <form #f="ngForm" (ngSubmit)="save(f)" novalidate>
+      <label for="m">Mathematics score (0-100)</label>
+      <input id="m" type="number" name="mathsScore" [(ngModel)]="marks.mathsScore" required min="0" max="100" step="0.01" #m="ngModel" />
+      @if (m.invalid) { <div class="field-error">Enter a score between 0 and 100</div> }
+
+      <label for="e">English score (0-100)</label>
+      <input id="e" type="number" name="englishScore" [(ngModel)]="marks.englishScore" required min="0" max="100" step="0.01" #e="ngModel" />
+      @if (e.invalid) { <div class="field-error">Enter a score between 0 and 100</div> }
+
+      <label for="sc">Science score (0-100)</label>
+      <input id="sc" type="number" name="scienceScore" [(ngModel)]="marks.scienceScore" required min="0" max="100" step="0.01" #sc="ngModel" />
+      @if (sc.invalid) { <div class="field-error">Enter a score between 0 and 100</div> }
+
+      <button type="submit">Update Scores</button>
+    </form>
+  }
+  <app-alert [text]="message()" [isError]="isError()" />
+</div>

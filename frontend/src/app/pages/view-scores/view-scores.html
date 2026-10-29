@@ -1,0 +1,44 @@
+<a class="back" routerLink="/">← Home</a>
+<div class="card">
+  <h2>View Student Scores</h2>
+  <div class="row">
+    <div>
+      <label for="sid">Student ID</label>
+      <input id="sid" type="number" min="1" name="searchId" [(ngModel)]="searchId" (keyup.enter)="search()" />
+    </div>
+    <button type="button" (click)="search()">Search</button>
+  </div>
+
+  @if (student(); as student) { @if (marks(); as marks) {
+    <h3>{{ student.studentName }}</h3>
+    <p class="muted">
+      ID {{ student.studentId }} · {{ student.homeTown }} · {{ student.isActive ? 'Active' : 'Inactive' }} ·
+      created {{ student.createdOn | date: 'medium' }}
+    </p>
+    <table>
+      <thead><tr><th>Subject</th><th>Score</th></tr></thead>
+      <tbody>
+        <tr><td>Mathematics</td><td>{{ marks.mathsScore }}</td></tr>
+        <tr><td>English</td><td>{{ marks.englishScore }}</td></tr>
+        <tr><td>Science</td><td>{{ marks.scienceScore }}</td></tr>
+        <tr><td><strong>Average</strong></td><td><strong>{{ marks.average }}</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <div>
+        <label for="sub">Single subject score</label>
+        <select id="sub" name="subject" [(ngModel)]="subject">
+          <option value="maths">Mathematics</option>
+          <option value="english">English</option>
+          <option value="science">Science</option>
+        </select>
+      </div>
+      <button type="button" (click)="getSubjectScore()">Get Score</button>
+    </div>
+    @if (subjectResult()) { <p><strong>{{ subjectResult() }}</strong></p> }
+
+    <button type="button" class="danger" (click)="deleteMarks()">Delete Marks</button>
+  } }
+  <app-alert [text]="message()" [isError]="isError()" />
+</div>

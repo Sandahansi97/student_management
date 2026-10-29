@@ -1,0 +1,18 @@
+<a class="back" routerLink="/">← Home</a>
+<div class="card">
+  <h2>Add New Student</h2>
+  <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+    <label for="name">Student name</label>
+    <input id="name" type="text" name="studentName" [(ngModel)]="studentName" required maxlength="100" #n="ngModel" />
+    @if (n.invalid && (n.touched || f.submitted)) { <div class="field-error">Student name is required</div> }
+
+    <label for="town">Hometown</label>
+    <input id="town" type="text" name="homeTown" [(ngModel)]="homeTown" required maxlength="100" #t="ngModel" />
+    @if (t.invalid && (t.touched || f.submitted)) { <div class="field-error">Hometown is required</div> }
+
+    <label class="checkbox"><input type="checkbox" name="isActive" [(ngModel)]="isActive" /> Active</label>
+
+    <button type="submit" [disabled]="saving()">{{ saving() ? 'Saving...' : 'Save Student' }}</button>
+  </form>
+  <app-alert [text]="message()" [isError]="isError()" />
+</div>

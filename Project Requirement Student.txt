@@ -1,0 +1,202 @@
+Project Requirement: Student Management and Marks System
+1. Project Overview
+Develop a simple web application called Student Management and Marks System to help beginners understand programming fundamentals, Object-Oriented Programming (OOP), REST APIs, database connectivity, and API testing.
+The application must have an Angular frontend, a TypeScript backend, and a PostgreSQL database.
+The application should be simple, easy to understand, and suitable for a beginner learning web application development.
+2. Technology Stack
+Use the following technologies:
+Frontend: Angular, TypeScript, HTML, and CSS.
+Backend: Node.js with TypeScript and Express.js.
+Database: PostgreSQL.
+Database management: DBeaver.
+API testing: Postman.
+Code editor: Visual Studio Code.
+Use a simple, beginner-friendly architecture. Avoid unnecessary frameworks, complex design patterns, and advanced configurations.
+3. Learning Objectives
+The application must help beginners understand:
+Programming fundamentals
+Variables, data types, conditions, loops, functions, and arrays.
+Classes and objects.
+Constructors, properties, and methods.
+Encapsulation, inheritance, abstraction, and polymorphism, with simple examples where relevant.
+Interfaces, types, and object-oriented programming in TypeScript.
+Backend development
+How a TypeScript backend works.
+Routes, controllers, services, and database access.
+HTTP methods and status codes.
+REST API design and request/response structures.
+Input validation and error handling.
+How the frontend communicates with the backend.
+Database development
+Creating a PostgreSQL database using SQL scripts.
+Creating tables, primary keys, foreign keys, and constraints.
+Performing INSERT, SELECT, UPDATE, and DELETE operations.
+Connecting PostgreSQL to the TypeScript backend.
+Using DBeaver to inspect tables and execute SQL queries.
+API testing
+Testing GET, POST, PATCH, and DELETE requests using Postman.
+Sending request bodies, path parameters, and query parameters.
+Validating response bodies, HTTP status codes, and error messages.
+Testing positive scenarios, negative scenarios, and edge cases.
+4. Database Requirements
+Create a PostgreSQL database named student_management.
+Provide a complete, executable SQL script to create the required tables and constraints.
+Table 1: student
+Column	Data type	Description
+student_id	SERIAL PRIMARY KEY	Unique student ID
+student_name	VARCHAR(100)	Student's full name
+home_town	VARCHAR(100)	Student's hometown
+created_on	TIMESTAMP	Record creation date and time
+is_active	BOOLEAN	Indicates whether the student is active
+Table 2: marks
+Column	Data type	Description
+student_id	INTEGER PRIMARY KEY, FOREIGN KEY	References the student table
+maths_score	NUMERIC(5,2)	Mathematics score
+english_score	NUMERIC(5,2)	English score
+science_score	NUMERIC(5,2)	Science score
+Assume that each student can have one marks record containing scores for all three subjects.
+Apply appropriate constraints, including valid score ranges of 0–100, required fields, and referential integrity.
+Provide:
+A database creation script.
+Table creation scripts.
+Sample INSERT statements for testing.
+Sample SELECT, UPDATE, and DELETE queries.
+Instructions for executing the scripts using DBeaver.
+5. Backend API Requirements
+Create REST APIs using Node.js, TypeScript, and Express.js.
+Use /api as the common API prefix and implement the following endpoints.
+Method	Endpoint	Purpose
+GET	/api/service/student/getAll	Retrieve all students
+GET	/api/service/student/getStudentByID/:id	Retrieve a student by ID
+GET	/api/service/marks/getMarksByStudentId/:id	Retrieve marks by student ID
+POST	/api/service/student/save	Create a student
+PATCH	/api/service/student/update	Update student details
+POST	/api/service/marks/save	Create a marks record
+PATCH	/api/service/marks/update	Update existing marks
+POST	/api/service/marks/getSubjectScore	Retrieve a specific subject score using student ID and subject name (using req object)
+DELETE	/api/service/marks/delete/:id	Delete marks using student ID
+For the subject score endpoint, pass studentId and subjectName as query parameters. For example:
+POST /api/service/marks/getSubjectScore
+For update operations, use a JSON request body containing the record ID and the fields to update. Allow partial updates.
+API implementation requirements
+For every endpoint, provide:
+Purpose and expected behavior.
+HTTP method and URL.
+Sample request body or parameters.
+Sample successful response.
+Appropriate HTTP status codes.
+Error responses for invalid input, missing records, duplicate records, and database failures.
+Postman test cases for positive and negative scenarios.
+Use appropriate status codes, including 200, 201, 400, 404, and 500 where applicable.
+Validate IDs, required fields, subject names, and score ranges. Use parameterized SQL queries to prevent SQL injection.
+6. Backend Architecture
+Organize the backend into beginner-friendly modules:
+routes: Defines API endpoints.
+controllers: Handles incoming requests and outgoing responses.
+services: Contains application logic.
+models: Defines TypeScript classes, interfaces, or data types.
+database: Handles PostgreSQL connectivity.
+middleware: Handles validation and centralized error processing where appropriate.
+Use clear, meaningful names and comments to explain important code sections.
+Demonstrate how classes and objects are used in the application. Explain the responsibility of each module and how a request travels from the route to the database and back to the client.
+7. Frontend Requirements
+Build a simple, responsive Angular application with a home page and separate pages for each operation.
+Home page
+Display the application title:
+Student Management and Marks System
+Provide six prominent, interactive navigation buttons or cards:
+Add New Student
+Edit Student Data
+View All Students
+Add Student Scores
+Update Student Scores
+View Student Scores
+Each button must navigate to its corresponding Angular page using Angular Router.
+Page 1: Add New Student
+Provide a form containing:
+Student name.
+Hometown.
+Active status.
+On submission, call the student save API and display a success or error message.
+Page 2: Edit Student Data
+Allow the user to search for a student using the student ID.
+Retrieve the student details, display them in an editable form, and submit the changes through the update API.
+Page 3: View All Students
+Retrieve all students using the GET API.
+Display the results in a table with student ID, name, hometown, creation date, and active status.
+Include a loading indicator and a message when no students are available.
+Page 4: Add Student Scores
+Allow the user to select or enter a student ID and provide:
+Mathematics score.
+English score.
+Science score.
+Validate scores between 0 and 100 and submit the data using the marks save API.
+Page 5: Update Student Scores
+Allow the user to search for an existing marks record using a student ID.
+Display the current scores, allow the user to edit them, and submit the changes using the marks update API.
+Page 6: View Student Scores
+Allow the user to search by student ID and view the student's details and subject scores.
+Also provide an option to select a subject and retrieve its individual score through the subject score API.
+Include a delete marks action with a confirmation message before deletion.
+8. Angular Implementation Requirements
+Use:
+Angular components for the individual pages.
+Angular Router for page navigation.
+Angular services for API communication.
+Angular HttpClient for HTTP requests.
+TypeScript interfaces or models for students and marks.
+Template-driven or reactive forms with appropriate validation.
+Keep the UI simple, clean, responsive, and easy to use.
+Display clear success and error messages for all API operations. Ensure the frontend communicates with the backend rather than using hardcoded sample data.
+Configure the backend URL centrally and explain how to configure Angular to communicate with the backend during local development.
+9. PostgreSQL Connectivity
+Explain how to connect the Node.js/TypeScript backend to PostgreSQL.
+Provide:
+PostgreSQL installation or connection prerequisites.
+Instructions to create the database using DBeaver.
+Required npm packages and their purposes.
+Environment variable configuration for database credentials.
+A reusable database connection or connection pool.
+Example SQL queries executed from the backend.
+Instructions to start PostgreSQL, the backend, and the Angular frontend.
+Do not hardcode database credentials in source code. Use environment variables and provide an .env.example file.
+10. Step-by-Step Development Guide
+Develop the application in the following order:
+Explain the overall architecture with a simple diagram.
+Set up the development environment and create the project folders.
+Create the PostgreSQL database and tables using SQL scripts.
+Connect the backend to PostgreSQL and verify the connection.
+Implement the student APIs.
+Implement the marks APIs.
+Test every API using Postman before starting the frontend.
+Create the Angular project and home page.
+Implement page navigation and forms.
+Connect Angular services to the backend APIs.
+Test complete user workflows from the UI to the database.
+Explain common errors and how to troubleshoot them.
+At each step, provide the necessary commands, complete code for the files being introduced, explanations, and expected results. Keep the project runnable at every major stage.
+11. Deliverables
+Provide the following:
+Architecture diagram.
+Complete project folder structure.
+PostgreSQL SQL scripts.
+TypeScript backend source code.
+Angular frontend source code.
+Environment configuration examples.
+Postman collection containing all APIs and example requests.
+API documentation with request and response examples.
+Manual API test cases, including positive and negative scenarios.
+Instructions for installing dependencies and running the application.
+A beginner-friendly explanation of classes, objects, OOP, REST APIs, and database connectivity using examples from this project.
+12. Final Acceptance Criteria
+The project is complete when:
+The database can be created using the supplied SQL scripts.
+The backend connects successfully to PostgreSQL.
+All listed APIs work and return appropriate responses.
+All six frontend pages are accessible through navigation.
+Forms validate input and show appropriate feedback.
+Frontend actions call the correct backend APIs.
+Data changes are persisted in PostgreSQL.
+APIs can be tested independently using Postman.
+The code and architecture are understandable to a beginner learning TypeScript and Angular.
+Start with the architecture, environment setup, and database creation. Then implement and test the backend before building the frontend. Do not generate the entire application as one unexplained block of code.
