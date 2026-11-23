@@ -1,4 +1,4 @@
-// CONTROLLER for marks.
+ // CONTROLLER for marks.
 import { NextFunction, Request, Response } from 'express';
 import { marksService } from '../services/marksService';
 import { parseId, parseSubject, requireBody, requireScore } from '../middleware/validation';

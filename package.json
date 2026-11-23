@@ -1,0 +1,26 @@
+{
+  "name": "student_management",
+  "version": "1.0.0",
+  "description": "Simple Student Management Application to study programming, API testing, Database Testing, Git and Automation",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sandahansi97/student_management.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sandahansi97/student_management/issues"
+  },
+  "homepage": "https://github.com/Sandahansi97/student_management#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
+  }
+}

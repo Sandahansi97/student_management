@@ -41,3 +41,11 @@ export async function updateStudent(req: Request, res: Response, next: NextFunct
     res.status(200).json({ success: true, message: 'Student updated', data: student });
   } catch (err) { next(err); }
 }
+
+// DELETE /api/service/student/delete/:id
+export async function deleteStudent(req: Request, res: Response, next: NextFunction) {
+  try {
+    const student = await studentService.delete(parseId(req.params.id));
+    res.status(200).json({ success: true, message: 'Student deleted', data: student });
+  } catch (err) { next(err); }
+}
