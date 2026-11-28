@@ -1,4 +1,4 @@
-// CONTROLLER for marks.
+ // CONTROLLER for marks.
 import { NextFunction, Request, Response } from 'express';
 import { marksService } from '../services/marksService';
 import { parseId, parseSubject, requireBody, requireScore } from '../middleware/validation';
@@ -36,7 +36,7 @@ export async function updateMarks(req: Request, res: Response, next: NextFunctio
   } catch (err) { next(err); }
 }
 
-// POST /api/service/marks/getSubjectScore?studentId=1&subjectName=maths
+// POST /api/service/marks/getSubjectScore?studentId=1&subjectName=maths test 
 export async function getSubjectScore(req: Request, res: Response, next: NextFunction) {
   try {
     const studentId = parseId(req.query.studentId, 'studentId'); // read from the req object's query string

@@ -52,6 +52,14 @@ export class StudentService {
     if (result.rows.length === 0) throw new NotFoundError(`Student with id ${id} not found`);
     return Student.fromRow(result.rows[0]);
   }
+
+  // Deletes the student and returns the deleted record.
+  // The student's marks are removed automatically by the "ON DELETE CASCADE" foreign key.
+  async delete(id: number): Promise<Student> {
+    const result = await pool.query<StudentRow>('DELETE FROM student WHERE student_id = $1 RETURNING *', [id]);
+    if (result.rows.length === 0) throw new NotFoundError(`Student with id ${id} not found`);
+    return Student.fromRow(result.rows[0]);
+  }
 }
 
 export const studentService = new StudentService(); // one shared object (instance)
