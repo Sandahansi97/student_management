@@ -36,7 +36,7 @@ export async function updateMarks(req: Request, res: Response, next: NextFunctio
   } catch (err) { next(err); }
 }
 
-// POST /api/service/marks/getSubjectScore?studentId=1&subjectName=maths
+// POST /api/service/marks/getSubjectScore?studentId=1&subjectName=maths test 
 export async function getSubjectScore(req: Request, res: Response, next: NextFunction) {
   try {
     const studentId = parseId(req.query.studentId, 'studentId'); // read from the req object's query string
